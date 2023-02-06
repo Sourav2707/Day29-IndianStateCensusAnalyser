@@ -7,6 +7,15 @@
     <groupId>org.example</groupId>
     <artifactId>Day29-IndianStateCensusAnalyser</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.7.1</version>
+        </dependency>
+
+    </dependencies>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
