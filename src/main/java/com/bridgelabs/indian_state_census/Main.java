@@ -15,7 +15,7 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
     CSVStateCensus census;
     List<CSVStateCensus> censuses = new ArrayList<>();
-    public void menu() throws CsvException, IOException {
+    public void menu() throws CsvException, IOException, CustomException {
         System.out.println("Menu 1. Read from CSV file and print 2. Print data from csv file 3. Exit");
         int option = scanner.nextInt();
         switch (option) {
@@ -37,7 +37,7 @@ public class Main {
                 break;
         }
     }
-    public static void main(String[] args) throws CsvException, IOException {
+    public static void main(String[] args) throws CsvException, IOException, CustomException {
         System.out.println("Welcome to Indian state census analyser program");
         Main main = new Main();
         main.menu();
