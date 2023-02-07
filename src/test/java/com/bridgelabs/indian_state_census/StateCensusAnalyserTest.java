@@ -79,4 +79,16 @@ class StateCensusAnalyserTest {
         int expected = 35;
         Assertions.assertEquals(actual, expected);
     }
+    @Test
+    void readStateCodeTestingFILE_Not_FOUNDException() throws IOException, CsvException, CustomException {
+        try {
+            File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCod.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
+            stateCensusAnalyser.readeStateCSV(actualFile);
+        }
+        catch (CustomException e) {
+            String message = e.getMessage();
+            Assertions.assertEquals("Oops!, it seems the file doesn't exist", message);
+        }
+    }
 }

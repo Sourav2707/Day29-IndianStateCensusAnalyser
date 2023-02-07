@@ -60,16 +60,37 @@ public class StateCensusAnalyser {
         }
         return censuses;
     }
-    public List<CSVStates> readeStateCSV(File file) throws IOException, CsvException {
-        FileReader fileReader = new FileReader(file);
-        CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
-        List<String[]> allData = csvReader.readAll();
-        for (String[] row : allData) {
-            int sNo = Integer.parseInt(row[0]);
-            String state = row[1];
-            String stateCode = row[2];
-            csvStates = new CSVStates(sNo, state, stateCode);
-            states.add(csvStates);
+    public List<CSVStates> readeStateCSV(File file) throws IOException, CsvException, CustomException {
+        //checking extension
+        String expectedType = "csv";
+        int index = file.toString().lastIndexOf('.');
+        String actualType = file.toString().substring(index+1);
+        if(file.exists()) {
+            fileReader = new FileReader(file);
+            CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
+            List<String[]> allData = csvReader.readAll();
+            //checking header
+            String[] header = new CSVReader(new FileReader(file)).readAll().get(0);
+            for (String[] row : allData) {
+                //checking delimeter is correct
+                if(row.length < 2) {
+                    throw new CustomException(CustomException.ExceptionType.DELIMETER_INCORRECT, "Oops, it seems the files weren't separated by comma check the delimeter");
+                }
+                if(!header[0].equals("Code") || !header[1].equals("State") || !header[2].equals("StateCode")) {
+                    throw new CustomException(CustomException.ExceptionType.HEADER_MISMATCH, "It seems the header is not match, please check the header");
+                }
+                int sNo = Integer.parseInt(row[0]);
+                String state = row[1];
+                String stateCode = row[2];
+                csvStates = new CSVStates(sNo, state, stateCode);
+                states.add(csvStates);
+            }
+        }
+        else if(!expectedType.equals(actualType)){
+            throw new CustomException(CustomException.ExceptionType.FILE_TYPE_MISMATCH, "Oops!, it seems the file type doesn't match");
+        }
+        else {
+            throw new CustomException(CustomException.ExceptionType.FILE_NOT_FOUND, "Oops!, it seems the file doesn't exist");
         }
         return states;
     }
