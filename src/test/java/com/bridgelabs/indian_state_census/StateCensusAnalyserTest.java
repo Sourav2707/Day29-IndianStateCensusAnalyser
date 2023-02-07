@@ -23,10 +23,27 @@ class StateCensusAnalyserTest {
         Assertions.assertEquals(actual, expected);
     }
     @Test
-    void readCSVCheckingCustomException() throws IOException, CsvException, CustomException {
-            File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCensus.csv");
+    void readCSVTestingFILE_Not_FOUNDException() throws IOException, CsvException, CustomException {
+            try {
+                File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCensus.csv");
+                StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
+                stateCensusAnalyser.readCSV(actualFile);
+            }
+            catch (CustomException e) {
+             String message = e.getMessage();
+                Assertions.assertEquals("Oops!, it seems the file doesn't exist", message);
+            }
+    }
+    @Test
+    void readCSVTestingFILE_TYPE_MISMATCHException() throws IOException, CsvException, CustomException {
+        try {
+            File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCensus.pdf");
             StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
-            CustomException customException = assertThrows(CustomException.class, () -> stateCensusAnalyser.readCSV(actualFile));
-            Assertions.assertEquals("Oops!, it seems the file doesn't exist", customException.getMessage());
+            stateCensusAnalyser.readCSV(actualFile);
+        }
+        catch (CustomException e) {
+            String message = e.getMessage();
+            Assertions.assertEquals("Oops!, it seems the file type doesn't match", message);
+        }
     }
 }
