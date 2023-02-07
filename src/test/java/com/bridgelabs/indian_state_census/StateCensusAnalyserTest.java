@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StateCensusAnalyserTest {
-    List<CSVStateCensus> expectedList;
+    List<CSVStates> statesActualList;
     List<CSVStateCensus> actualList;
     @Test
     void readCSVCheckingRecordMatches() throws IOException, CsvException, CustomException {
@@ -69,5 +69,14 @@ class StateCensusAnalyserTest {
             String message = e.getMessage();
             Assertions.assertEquals("It seems the header is not match, please check the header", message);
         }
+    }
+    @Test
+    void readStateCodeCheckingRecordMatches() throws IOException, CsvException, CustomException {
+        File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCode.csv");
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
+        statesActualList = stateCensusAnalyser.readeStateCSV(actualFile);
+        int actual = statesActualList.size();
+        int expected = 35;
+        Assertions.assertEquals(actual, expected);
     }
 }
