@@ -15,7 +15,7 @@ class StateCensusAnalyserTest {
     List<CSVStateCensus> actualList;
     @Test
     void readCSVCheckingRecordMatches() throws IOException, CsvException, CustomException {
-        File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCensusData.csv");
+        File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCode.csv");
         StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
         actualList = stateCensusAnalyser.readCSV(actualFile);
         int actual = actualList.size();

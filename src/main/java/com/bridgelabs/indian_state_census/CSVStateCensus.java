@@ -21,6 +21,9 @@ public class CSVStateCensus {
         this.literacy = literacy;
     }
 
+    public CSVStateCensus(int sNo, String state, String stateCode) {
+    }
+
     public int getsNo() {
         return sNo;
     }
