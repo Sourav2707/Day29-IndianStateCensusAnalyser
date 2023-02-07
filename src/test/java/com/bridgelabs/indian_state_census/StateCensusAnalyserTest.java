@@ -46,4 +46,16 @@ class StateCensusAnalyserTest {
             Assertions.assertEquals("Oops!, it seems the file type doesn't match", message);
         }
     }
+    @Test
+    void readCSVTestingDELIMETER_INCORRECTException() throws IOException, CsvException, CustomException {
+        try {
+            File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\DelimeterIncorrectData.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
+            stateCensusAnalyser.readCSV(actualFile);
+        }
+        catch (CustomException e) {
+            String message = e.getMessage();
+            Assertions.assertEquals("Oops, it seems the files weren't separated by comman check the delimeter", message);
+        }
+    }
 }

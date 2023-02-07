@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 public class Main {
     StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
-    File file = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCensusData.pdf");
+    File file = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCensusData.csv");
     Scanner scanner = new Scanner(System.in);
     CSVStateCensus census;
     List<CSVStateCensus> censuses = new ArrayList<>();
