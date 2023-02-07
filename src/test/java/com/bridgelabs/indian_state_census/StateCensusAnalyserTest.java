@@ -115,4 +115,16 @@ class StateCensusAnalyserTest {
             Assertions.assertEquals("Oops, it seems the files weren't separated by comma check the delimeter", message);
         }
     }
+    @Test
+    void readStateCodeTestingHEADER_MISMATCHException() throws IOException, CsvException, CustomException {
+        try {
+            File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\HeaderMismatchStateCode.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
+            stateCensusAnalyser.readeStateCSV(actualFile);
+        }
+        catch (CustomException e) {
+            String message = e.getMessage();
+            Assertions.assertEquals("It seems the header is not match, please check the header", message);
+        }
+    }
 }
