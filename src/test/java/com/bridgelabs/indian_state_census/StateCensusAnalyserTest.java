@@ -91,4 +91,16 @@ class StateCensusAnalyserTest {
             Assertions.assertEquals("Oops!, it seems the file doesn't exist", message);
         }
     }
+    @Test
+    void readSateCodeTestingFILE_TYPE_MISMATCHException() throws IOException, CsvException, CustomException {
+        try {
+            File actualFile = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCode.pdf");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
+            stateCensusAnalyser.readeStateCSV(actualFile);
+        }
+        catch (CustomException e) {
+            String message = e.getMessage();
+            Assertions.assertEquals("Oops!, it seems the file type doesn't match", message);
+        }
+    }
 }
