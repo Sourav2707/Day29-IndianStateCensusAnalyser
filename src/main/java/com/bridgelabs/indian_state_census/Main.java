@@ -4,12 +4,14 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 public class Main {
     StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
+    File file = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCensusData.csv");
     Scanner scanner = new Scanner(System.in);
     CSVStateCensus census;
     List<CSVStateCensus> censuses = new ArrayList<>();
@@ -18,7 +20,7 @@ public class Main {
         int option = scanner.nextInt();
         switch (option) {
             case 1:
-                censuses = stateCensusAnalyser.readCSV();
+                censuses = stateCensusAnalyser.readCSV(file);
                 menu();
                 break;
             case 2:

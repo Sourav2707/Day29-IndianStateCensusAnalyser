@@ -15,11 +15,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StateCensusAnalyser {
-    File file = new File("C:\\Users\\Sourav Prasanna\\IdeaProjects\\Day29-IndianStateCensusAnalyser\\src\\main\\resources\\StateCensusData.csv");
     CSVStateCensus census;
     List<CSVStateCensus> censuses = new ArrayList<>();
 
-    public List<CSVStateCensus> readCSV() throws IOException, CsvException {
+    public List<CSVStateCensus> readCSV(File file) throws IOException, CsvException {
         try {
             FileReader fileReader = new FileReader(file);
             CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
